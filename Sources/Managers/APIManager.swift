@@ -129,13 +129,17 @@ extension APIManager {
             let item = URLQueryItem(name: Constants.language, value: language)
             items.append(item)
         }
+        
+        let timeStamp = "\(Date().timeIntervalSince1970 * 1000)"
+        let item = URLQueryItem(name: "t", value: timeStamp)
+        items.append(item)
 
         components.queryItems = items
 
         guard let url = components.url, !url.absoluteString.isEmpty else {
-            throw KnownError.malformedURL
+          throw KnownError.malformedURL
         }
 
         return url
-    }
+      }
 }
